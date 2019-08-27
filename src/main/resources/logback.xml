@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!--appender用于指定日志输出的位置-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <!--layout指定日志输入的格式-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[%p] [%d{yyyy-MM-dd HH:mm:ss}] %m %n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 根日志： springboot官方建议info级别 -->
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+    <!-- 子日志 : 我们自己可以在这定义日志监控的范围-->
+    <logger name="com.baizhi.dao" level="DEBUG"/>
+    <logger name="com.baizhi.controller" level="ERROR"/>
+</configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UsreDao">
+    <!--1.查询所有用户-->
+    <select id="selectAllUser" resultType="User">
+        select id,phone,username,password,sex,head_pic,dharma,province,city,sign,status,create_date
+         from user
+        limit #{begin},#{rows}
+    </select>
+
+    <!--2.查询总条数-->
+    <select id="totalRows" resultType="Integer">
+      select count(*) from user
+    </select>
+
+    <!--5.修改用户状态-->
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="status!=null">status=#{status}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--6.不分页查询所有用户-->
+    <select id="selectAllUserNoPage" resultType="User">
+        select id,phone,username,password,sex,head_pic,dharma,province,city,sign,status,create_date
+         from user
+    </select>
+
+    <!--6.查询用户注册趋势-->
+    <select id="getCountByDate" parameterType="Integer" resultType="Integer">
+        select count(id) from  user where datediff(NOW(),create_date)&lt;#{day}
+    </select>
+
+    <!--6.查询用户地区分布-->
+    <select id="queryUserByProvince" resultType="com.baizhi.DTO.UserDTO">
+        select province,count(id) counts from user group by province
+    </select>
+
+
+</mapper>

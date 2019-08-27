@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hqxm:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="hqxm.war">
+      <element id="artifact" artifact-name="hqxm:war exploded" />
+    </root>
+  </artifact>
+</component>
